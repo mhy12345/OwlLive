@@ -1,0 +1,13 @@
+.message{
+	font-size:25px
+}
+
+.post-user{
+	font-size:10px;
+	float:right;
+	text-align:right;
+}
+
+.like-tag{
+	color:gray
+}

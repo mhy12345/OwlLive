@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	div.container
+		h1 Rooms
+		div.table-responsive
+			table.table.table-striped
+				thead
+					tr
+						th Room
+						th Status
+				tbody
+					each it in rtable
+						tr
+							td 
+								a(href='room?room=#{it.name}') #{it.name}
+							td #{it.status}
