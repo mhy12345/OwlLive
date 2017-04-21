@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
+var participantsSchema = new mongoose.Schema({
+	name : String,
+	chosen : String
+});
 var roomSchema = new mongoose.Schema({
 	name:String,
 	createTime:Date,
-	status:String
+	status:String,
+	participants:[participantsSchema],
 });
-module.exports=mongoose.model('rooms', roomSchema);
+module.exports.room=mongoose.model('rooms', roomSchema);
+module.exports.participant=mongoose.model('participants', participantsSchema);

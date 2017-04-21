@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.createConnection('localhost','test');
-var room = require('../models/room');
+var room = require('../models/room').room;
 var user = require('../models/user');
 var message = require('../models/message');
 var crypto = require('crypto');
@@ -60,6 +60,12 @@ router.post('/', function(req, res, next){
 		room.remove({}, function(err) { 
 			console.log('Rooms removed...') 
 		});
+	}else if (req.body.command == 'stopregister')
+	{
+		global.registerflag = false;
+	}else if (req.body.command == 'startregister')
+	{
+		global.registerflag = true;
 	}
 	res.redirect('/');
 });

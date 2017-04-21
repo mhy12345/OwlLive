@@ -25,11 +25,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
+	if (global.registerflag == null)
+		global.registerflag = true;
+	if (!global.registerflag)
+	{
+		var err = new Error('You cannot register now!');
+		next(err);
+		return ;
+	}
 	console.log("Registration requestion occur");
 	console.log("User name:"+req.body.name);
-//	console.log("User password:"+req.body.password);
-	//var PersonModel = mongoose.model('person',PersonSchema);
-	//console.log(user);
 	user.findOne({name:req.body.name},function(ferr,fres){
 		if (fres!=null){
 			console.log("User name "+req.body.name+" already in used!");
