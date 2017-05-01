@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
-mongoose.connect('mongodb://127.0.0.1/test');
+mongoose.connect('mongodb://mongodb/owllivedb');
 
 
 var index = require('./routes/index');

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var db = mongoose.createConnection('localhost','test');
+var db = mongoose.createConnection('mongodb','owllivedb');
 
 var user = require('../models/user');
 var crypto = require('crypto');
