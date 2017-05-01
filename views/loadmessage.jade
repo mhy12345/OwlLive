@@ -1,6 +1,0 @@
-each it in mlist
-	hr
-	div.message #{it.text}
-	div.post-user
-		span.like-tag(onclick="sendLike('#{it._id}','#{user}')") [+#{it.like}] 
-		span posted by #{it.user}
