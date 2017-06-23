@@ -12,7 +12,8 @@ function loadXMLDoc(room)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("messageField").innerHTML=xmlhttp.responseText;
+			var tt = document.getElementsByClassName("messageField")
+			tt[0].innerHTML = tt[1].innerHTML=xmlhttp.responseText;
 		}
 	}
 	xmlhttp.open("GET","api/loadmessage?room="+room,true);

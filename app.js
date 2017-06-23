@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var multer = require('multer');
 mongoose.connect('mongodb://mongodb/owllivedb');
 
 
@@ -37,6 +38,8 @@ app.use(session({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({ dest: '/tmp/'}).array('file'));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

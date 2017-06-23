@@ -6,6 +6,7 @@ var room = require('../models/room').room;
 var user = require('../models/user');
 var message = require('../models/message');
 var crypto = require('crypto');
+var fs = require('fs');
 function md5 (text) {
 	return crypto.createHash('md5').update(text).digest('hex');
 };
@@ -30,6 +31,35 @@ router.post('/', function(req, res, next){
 		console.log('User level:'+req.session.level);
 		var err = new Error('Permission denied.');
 		next(err);
+		return ;
+	}
+	console.log(req.body);
+	if (req.body.roomid)
+	{
+		console.log("Upload file to "+req.body.roomid)
+		room.findOne({name:req.body.roomid},function(ferr,fres){
+			if (!fres)
+			{
+				var err = new Error('No Such Room..');
+				next(err);
+			}else
+			{
+				console.log(req.files);
+				var tmp_path = req.files[0].path;
+				var target_path = './public/uploads/' + req.body.roomid +'-'+req.files[0].originalname;
+				console.log("TMP PATH:"+tmp_path+"FILL PATH:"+target_path);
+				fs.rename(tmp_path, target_path, function(err) {
+					if (err) throw err;
+					fs.unlink(tmp_path, function() {
+						if (err) throw err;
+						res.send('File uploaded to: ' + target_path + ' - ' + req.files[0].size + ' bytes');
+					});
+				});
+				fres.files.push(req.files[0].originalname);
+				fres.save();
+			}
+		});
+		return ;
 	}
 	if (req.body.command == 'newroom')
 	{

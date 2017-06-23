@@ -8,6 +8,7 @@ var roomSchema = new mongoose.Schema({
 	createTime:Date,
 	status:String,
 	participants:[participantsSchema],
+	files:[String]
 });
 module.exports.room=mongoose.model('rooms', roomSchema);
 module.exports.participant=mongoose.model('participants', participantsSchema);

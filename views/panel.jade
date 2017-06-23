@@ -5,8 +5,10 @@ block append head
 		link(rel='stylesheet', href='/stylesheets/panel.css')
 
 block content
-	div.container
+	.container
 		form.panel-form(method='post')
+			p
+				b Command
 			select(name='command')
 				option(value='none') None
 				option(value='newroom') NewRoom
@@ -18,4 +20,13 @@ block content
 				option(value='stopregister') Stop Register
 				option(value='startregister') Start Register
 			input(type='text',name='params')
+			input(type='submit')
+	.container
+		form.panel-upload(method='post',enctype='multipart/form-data')
+			p
+				b Upload
+			span RoomId:
+			input(type='text',name='roomid')
+			br
+			input(type='file',name='file')
 			input(type='submit')

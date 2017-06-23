@@ -127,18 +127,6 @@ router.post('/votestatus', function(req, res, next){
 			}
 		});
 	}
-	/*
-	   room.update({'name':roomId},{'$pull':{'user':user}},function(err){
-	   console.log('here2');
-	   if (err) {
-	   console.log(err);
-	   }
-	   room.update({'name':roomId},{'$push':{'user':user,'status':st}},function(err){
-	   if (err) {
-	   console.log(err);
-	   }
-	   });
-	   });*/
 	res.end();
 });
 
