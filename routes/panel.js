@@ -47,7 +47,7 @@ router.post('/', function(req, res, next){
 				console.log(req.files);
 				var tmp_path = req.files[0].path;
 				var target_path = './public/uploads/' + req.body.roomid +'-'+req.files[0].originalname;
-				console.log("TMP PATH:"+tmp_path+"FILL PATH:"+target_path);
+				console.log("TMP PATH:"+tmp_path+" FILE PATH:"+target_path);
 				fs.rename(tmp_path, target_path, function(err) {
 					if (err) throw err;
 					fs.unlink(tmp_path, function() {
