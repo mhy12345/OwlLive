@@ -52,18 +52,7 @@ router.post('/', function(req, res, next){
 				next(err);
 				return ;
 			}
-			for (var i=0;i<uname.length;i++)
-			{
-				if (uname[i]!='_' && 
-						!(uname[i]<='Z' && uname[i]>='A') && 
-						!(uname[i]<='z' && uname[i]>='a') &&
-						!(uname[i]<='9' && uname[i]>='0'))
-				{
-					var err = new Error('User name can only contain _,a-z,A-Z,0-9!');
-					next(err);
-					return ;
-				}
-			}
+	// Why on earth do you block we from registering a good username?
 			newUser.name = req.body.name;
 			newUser.password = md5(req.body.password);
 			newUser.lastAction = null;
