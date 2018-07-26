@@ -21,10 +21,10 @@ router.get('/loadmessage', function(req, res, next) {
 	if (req.query.room == null) {
 		res.redirect("../");
 	}
-	console.log('...',req.query.current_time)
+	//console.log('...',req.query.current_time)
 	message.find({'room':req.query.room}).sort({'_id':-1}).limit(20).exec(
 			function(err,fres){
-				console.log(fres);
+				//console.log(fres);
 				res.render('loadmessage',{'mlist':fres,'user':req.session.user,'last_time':req.query.current_time});
 			});
 });
