@@ -1,22 +1,23 @@
 function loadXMLDoc(room)
 {
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
 	}
-	else
-	{// code for IE6, IE5
+	else { // code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			var tt = document.getElementsByClassName("messageField")
-			tt[0].innerHTML = tt[1].innerHTML=xmlhttp.responseText;
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			$(".messageField").append(xmlhttp.responseText);
 		}
 	}
-	xmlhttp.open("GET","api/loadmessage?room="+room,true);
+	if ($(".post-time")[0] == undefined) {
+		current_time = 0;
+	} else {
+		current_time = +$(".post-time")[0].innerHTML
+	}
+	console.log(current_time)
+	xmlhttp.open("GET","api/loadmessage?room="+room+"&current_time="+current_time,true);
 	xmlhttp.send();
 	setTimeout("loadXMLDoc('"+room+"')",1000);
 }

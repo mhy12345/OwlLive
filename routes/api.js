@@ -18,34 +18,23 @@ function actionCheck(name)
 }
 
 router.get('/loadmessage', function(req, res, next) {
-	if (req.query.room == null)
-	{
+	if (req.query.room == null) {
 		res.redirect("../");
 	}
-//	console.log(">>>"+req.query.room);
+	console.log('...',req.query.current_time)
 	message.find({'room':req.query.room}).sort({'_id':-1}).limit(20).exec(
 			function(err,fres){
-				//console.log('load message');
-				fres.sort(function(a,b){
-					return (b.postTime.getTime()/1000 + (b.like+1)/2) -
-						(a.postTime.getTime()/1000 + (a.like+1)/2);
-				});
-			/*	fres.forEach(function(it){
-					console.log(" "+ (it.postTime.getTime()/1000 + math.log(it.like+1)));
-				});*/
-				res.render('loadmessage',{'mlist':fres,'user':req.session.user});
+				console.log(fres);
+				res.render('loadmessage',{'mlist':fres,'user':req.session.user,'last_time':req.query.current_time});
 			});
 });
 
 router.post('/sendmessage', function(req, res, next){
-	if (!req.session.user)
-	{
+	if (!req.session.user) {
 		res.redirect("../login");
-	}else
-	{
+	}else {
 		user.findOne({'name':req.session.user},function(ferr,fres){
-			if (fres.level =='Iceman')
-			{
+			if (fres.level =='Iceman') {
 				var err = new Error('You don\'t have permission to send message.');
 				next(err);
 			}else if (req.body.message.length>300)

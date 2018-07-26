@@ -12,5 +12,8 @@
 	color:gray
 }
 .side-wall{
-	height:200px;
+	min-height:200px;
+}
+.post-time{
+	display:none;
 }

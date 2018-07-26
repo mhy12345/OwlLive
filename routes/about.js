@@ -6,7 +6,7 @@ var user = require('../models/user');
 router.get('/', function(req, res, next) {
   user.find(function(ferr,fres){
 	  console.log(fres);
-	  res.render('plain',{'title':'About', 'content': 'A Live Discuss System by mhy12345', 'user':req.session.user});
+	  res.render('about',{ 'user':req.session.user});
   });
 });
 

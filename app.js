@@ -53,6 +53,8 @@ app.use('/room', room);
 app.use('/api',api);
 app.use('/about',about);
 
+//app.use(express.json({limit: '5000kb'}));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
